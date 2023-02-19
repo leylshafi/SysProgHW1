@@ -37,8 +37,16 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            
-            
+            <ListView x:Name="Blacklist" Grid.Column="1" ItemsSource="{Binding BlackList}" >
+                <ListView.View>
+                    <GridView >
+                        <GridViewColumn
+        DisplayMemberBinding="{Binding ProcessName}"
+        Header="Name" Width="110"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
         </Grid>
         
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
@@ -46,7 +54,7 @@
             <TextBox x:Name="SearchTxt" Width="300" Margin="20 0 10 0"></TextBox>
             <Button FontSize="20" Background="Green" Foreground="White" Click="Button_Click">Create Process</Button>
             <Button FontSize="20" Background="Red" Foreground="White" Margin="10 0" Click="Button_Click_1">End Process</Button>
-            <Button FontSize="20" Background="Black" Foreground="White" Width="100">Blacklist</Button>
+            <Button FontSize="20" Background="Black" Foreground="White" Width="100" Click="Button_Click_2">Blacklist</Button>
         </StackPanel>
     </Grid>
 </Window>

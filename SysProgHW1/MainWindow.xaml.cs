@@ -22,7 +22,7 @@ namespace SysProgHW1;
 public partial class MainWindow : Window
 {
     public ObservableCollection<Process> Processes { get; set; }
-    public List<string> BlackList { get; set; }
+    public ObservableCollection<Process> BlackList { get; set; }
     public MainWindow()
     {
         InitializeComponent();
@@ -91,7 +91,36 @@ public partial class MainWindow : Window
                         Processes.Add(p);
                 }
                 );
-        
+
+            }
+
+        }
+    }
+
+    private void Button_Click_2(object sender, RoutedEventArgs e)
+    {
+        if (List.SelectedItem is null)
+            return;
+
+        if (List.SelectedItem is Process p)
+        {
+            if (!BlackList.Contains(p))
+            {
+                BlackList.Add(p);
+                Thread.Sleep(1000);
+                if (BlackList.Any(s => s == p))
+                {
+                    try
+                    {
+                        p.Kill();
+                        Processes.Remove(p);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message); ;
+                    }
+                }
+
             }
 
         }
